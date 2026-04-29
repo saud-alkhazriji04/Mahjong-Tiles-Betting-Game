@@ -1,1 +1,39 @@
 @import "tailwindcss";
+
+/* ─── Design Tokens ───────────────────────────────────────────────────────── */
+/* Tailwind v4 theme extension — all tokens available as CSS vars and
+   Tailwind utilities (e.g. bg-surface, text-primary, border-border) */
+@theme {
+  /* Typography */
+  --font-sans: "DM Sans", sans-serif;
+
+  /* Palette */
+  --color-background: #F8F8F8;
+  --color-surface:    #FFFFFF;
+  --color-primary:    #1A1A1A;
+  --color-secondary:  #6B7280;
+  --color-border:     #E5E5E5;
+  --color-success:    #16A34A;
+  --color-error:      #DC2626;
+
+  /* Border radius */
+  --radius-card: 8px;
+}
+
+/* ─── Base Styles ─────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-background);
+  color: var(--color-primary);
+  -webkit-font-smoothing: antialiased;
+}

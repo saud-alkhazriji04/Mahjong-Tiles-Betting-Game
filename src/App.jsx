@@ -1,15 +1,19 @@
-import { useState, useEffect } from "react";
-import {
-  Route,
-  createBrowserRouter,
-  createRoutesFromElements,
-  RouterProvider,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Landing from "./components/landing/Landing";
+import Game from "./components/game/Game";
+import GameOver from "./components/game/GameOver";
 import "./App.css";
 
-import React from "react";
-
 const App = () => {
-  return <div>App</div>;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/game" element={<Game />} />
+        <Route path="/gameover" element={<GameOver />} />
+      </Routes>
+    </BrowserRouter>
+  );
 };
+
 export default App;
