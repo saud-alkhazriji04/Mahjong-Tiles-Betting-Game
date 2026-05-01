@@ -26,7 +26,7 @@ export const SPECIAL_TILE_VALUE_DELTA = 1;
 export const LEADERBOARD_SIZE = 5;
 
 /** localStorage key for the leaderboard */
-export const LEADERBOARD_STORAGE_KEY = "penny_leaderboard";
+export const LEADERBOARD_STORAGE_KEY = "mahjong_tiles_betting_game_leaderboard";
 
 /** Score awarded per correct bet */
 export const SCORE_WIN = 1;

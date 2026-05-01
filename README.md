@@ -1,16 +1,115 @@
-# React + Vite
+# Hand Betting Game
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A web-based card game built with React and Mahjong tiles, created as a technical assessment for Penny Software.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## About the Game
 
-## React Compiler
+Hand Betting Game is a web-based card game using Mahjong tiles. Each round, you are dealt a hand of tiles with a total value. Your goal is to predict whether the next hand's total will be **higher** or **lower** than the current one.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The twist: Dragon and Wind tile values are **dynamic** — they shift based on whether they appear in winning or losing hands, so the stakes change as the game progresses.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Rules
+
+### Tiles
+
+| Tile Type     | Value                                 |
+| ------------- | ------------------------------------- |
+| Number (1–9)  | Face value                            |
+| Dragon & Wind | Base value of 5 (dynamic — see below) |
+
+Dragon and Wind tile values change dynamically:
+
+- Appears in a **winning** hand → value increases by 1
+- Appears in a **losing** hand → value decreases by 1
+
+### Gameplay
+
+1. You are dealt **3 tiles** each round.
+2. Bet **Higher** or **Lower** based on the current hand's total value.
+3. The next hand is revealed and compared to the current one.
+4. **Ties count as a loss.**
+
+### Win / Loss Conditions
+
+- **You Win** if any tile type's value reaches **10**.
+- **You Lose** if any tile type's value reaches **0**.
+- **Game Over** if the draw pile runs out **3 times**.
+
+### Scoring
+
+- Each correct guess increases your score.
+- Top **5 scores** are saved to the leaderboard.
+
+---
+
+## Setup
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/saud-alkhazriji04/Mahjong-Tiles-Betting-Game.git
+# 2. Navigate into the project
+cd repo-name
+
+# 3. Install dependencies
+npm install
+
+# 4. Start the development server
+npm run dev
+```
+
+Open your browser at **http://localhost:5173**
+
+---
+
+## Tech Stack
+
+| Layer     | Technology         |
+| --------- | ------------------ |
+| Framework | React + JavaScript |
+| Styling   | Tailwind CSS       |
+| Routing   | React Router       |
+| Build     | Vite               |
+
+---
+
+## Architecture Overview
+
+The app is structured around a single `useReducer` hook that serves as the central state machine for all game logic. Actions dispatched from UI components flow into the reducer, which delegates to a **services layer** for domain-specific operations.
+
+```
+src/
+├── components/       # UI components (tiles, betting controls, leaderboard)
+├── context/          # React context + useReducer (game state)
+├── services/         # Domain logic (deck, tile values, scoring)
+├── pages/            # Route-level views (Game, Leaderboard)
+└── assets/           # Tile images and static files
+```
+
+State changes (tile value shifts, score updates, win/loss evaluation) are handled entirely within the reducer and its service delegates — components remain display-only.
+
+---
+
+## Design Decisions
+
+**`useReducer` over `useState`**
+Chosen because the assessment prioritized scalable, feature-ready architecture. All game logic is centralized in the reducer and delegates to a services layer for easy extension.
+
+**Services layer**
+Deck, tile, and score logic are separated into individual service files to keep the reducer clean and make future feature additions straightforward.
+
+**Clean & minimal design**
+Chosen to align with Penny's minimalist brand values.
+
+---
+
+## AI Usage
+
+**Code**
+Some reducer functions was generated and refined with Claude based on detailed descriptions of the intended behavior. JSDoc annotations and code comments were added/restructured with Claude's assistance.
+
+**Styling**
+UI styling was implemented by Claude based on a Figma design I created. Minor adjustments were made manually.
