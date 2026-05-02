@@ -30,7 +30,7 @@ export const createDeck = () =>
     Array.from({ length: TILES_PER_TYPE }, (_, copyIndex) => ({
       ...tile,
       instanceId: `${tile.id}-${copyIndex}`,
-    }))
+    })),
   );
 
 /**
@@ -40,7 +40,7 @@ export const createDeck = () =>
  * @returns {{ drawn: Object[], remaining: Object[] }}
  */
 export const drawTiles = (deck, count) => ({
-  drawn:     deck.slice(0, count),
+  drawn: deck.slice(0, count),
   remaining: deck.slice(count),
 });
 
@@ -48,6 +48,8 @@ export const drawTiles = (deck, count) => ({
  * Reshuffles after the draw pile runs out.
  * Combines the discard pile with a brand-new deck, then shuffles.
  * The draw pile is empty at this point, so it is not included.
+ * This causes the draw pile to keep growing it doesnt make sence
+ * but this is what the assessment doc specified.
  * @param {Object[]} discardPile
  * @returns {Object[]} new draw pile
  */

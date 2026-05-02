@@ -51,8 +51,9 @@ Dragon and Wind tile values change dynamically:
 ```bash
 # 1. Clone the repository
 git clone https://github.com/saud-alkhazriji04/Mahjong-Tiles-Betting-Game.git
+
 # 2. Navigate into the project
-cd repo-name
+cd Mahjong-Tiles-Betting-Game
 
 # 3. Install dependencies
 npm install
@@ -82,11 +83,16 @@ The app is structured around a single `useReducer` hook that serves as the centr
 
 ```
 src/
-├── components/       # UI components (tiles, betting controls, leaderboard)
-├── context/          # React context + useReducer (game state)
-├── services/         # Domain logic (deck, tile values, scoring)
-├── pages/            # Route-level views (Game, Leaderboard)
-└── assets/           # Tile images and static files
+├── components/
+│   ├── game/         # Game screen (Game, GameOver, HandDisplay, HandHistory, TopBar)
+│   ├── landing/      # Landing page (Landing)
+│   ├── leaderboard/  # Leaderboard screen (Leaderboard)
+│   └── shared/       # Reusable UI (Button, TileCard)
+├── constants/        # Static config and tile definitions (gameConfig, tiles)
+├── context/          # Game state (GameContext, gameReducer)
+├── services/         # Domain logic (deckService, tileService, scoreService)
+├── assets/           # Static files (currently empty)
+└── App.jsx
 ```
 
 State changes (tile value shifts, score updates, win/loss evaluation) are handled entirely within the reducer and its service delegates — components remain display-only.
